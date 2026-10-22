@@ -57,6 +57,8 @@ public final class Config {
         return value.trim();
     }
 
+
+    // -------------- BASE URL, PATH, LOGGING
     public static String baseUrl() {
         return get("api.base.url");
     }
@@ -67,5 +69,18 @@ public final class Config {
 
     public static boolean httpLogging() {
         return Boolean.parseBoolean(get("http.logging"));
+    }
+
+    // -------------- SEED USER
+    public static String seedUserEmail() {
+        return get("seed.user.email");
+    }
+
+    public static String seedUserNickname() {
+        return get("seed.user.nickname");
+    }
+
+    public static String seedUserPassword() {
+        return get("seed.user.password");
     }
 }
