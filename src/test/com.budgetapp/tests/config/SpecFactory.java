@@ -1,10 +1,11 @@
-package tests.config;
+package test.com.budgetapp.tests.config;
 
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import test.com.budgetapp.tests.ai.HttpExchangeRecorder;
 
 /**
  * Central factory for request specifications.
@@ -22,7 +23,8 @@ public final class SpecFactory {
         RequestSpecBuilder builder = new RequestSpecBuilder()
                 .setBaseUri(Config.baseUrl())
                 .setBasePath(Config.basePath())
-                .addHeader("Accept", "application/json");
+                .addHeader("Accept", "application/json")
+                .addFilter(new HttpExchangeRecorder());
 
         if (Config.httpLogging()) {
             builder.log(LogDetail.ALL);

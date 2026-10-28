@@ -1,4 +1,4 @@
-package tests.config;
+package test.com.budgetapp.tests.config;
 
 import java.io.IOException;
 import java.io.InputStream;

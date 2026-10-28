@@ -1,9 +1,10 @@
-package tests.smoke;
+package test.com.budgetapp.tests.smoke;
 
-import tests.config.Config;
+
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import test.com.budgetapp.tests.config.Config;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;

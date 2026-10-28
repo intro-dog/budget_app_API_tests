@@ -1,6 +1,8 @@
-package tests.api;
+package test.com.budgetapp.tests.api;
+
 import io.restassured.response.Response;
-import tests.config.SpecFactory;
+import test.com.budgetapp.tests.config.SpecFactory;
+
 import static io.restassured.RestAssured.given;
 
 /**

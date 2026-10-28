@@ -1,18 +1,21 @@
-package tests.auth;
+package test.com.budgetapp.tests.auth;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import tests.api.AuthApi;
-import tests.config.Config;
+import test.com.budgetapp.tests.ai.AiTriageExtension;
+import test.com.budgetapp.tests.api.AuthApi;
+import test.com.budgetapp.tests.config.Config;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Covers {@code POST /auth/login}.
  */
+@ExtendWith(AiTriageExtension.class)
 class LoginTest {
 
     @Test
@@ -62,7 +65,7 @@ class LoginTest {
     void loginWithWrongPasswordIsRejected() {
         Response response = AuthApi.login(
                 Config.seedUserEmail(),
-                "NottherightPassword!"
+                "BrotheringPassword!"
         );
 
         assertThat(response.statusCode())
