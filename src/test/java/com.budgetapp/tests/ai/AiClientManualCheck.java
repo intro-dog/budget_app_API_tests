@@ -1,4 +1,4 @@
-package test.com.budgetapp.tests.ai;
+package com.budgetapp.tests.ai;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Sanity check for the triage client against a locally running model.
  */
-class AiClientManualCheckTest {
+class AiClientManualCheck {
 
     @Test
     @DisplayName("Triage classified a connection refused failure as an environment problem")

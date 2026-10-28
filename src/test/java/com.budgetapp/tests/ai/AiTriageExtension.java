@@ -1,4 +1,4 @@
-package test.com.budgetapp.tests.ai;
+package com.budgetapp.tests.ai;
 
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;

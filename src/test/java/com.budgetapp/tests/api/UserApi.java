@@ -1,7 +1,7 @@
-package test.com.budgetapp.tests.api;
+package com.budgetapp.tests.api;
 
 import io.restassured.response.Response;
-import test.com.budgetapp.tests.config.SpecFactory;
+import com.budgetapp.tests.config.SpecFactory;
 
 import static io.restassured.RestAssured.given;
 

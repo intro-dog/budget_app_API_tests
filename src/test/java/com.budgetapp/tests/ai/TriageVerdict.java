@@ -1,4 +1,4 @@
-package test.com.budgetapp.tests.ai;
+package com.budgetapp.tests.ai;
 
 /**
  * The triage layer's reading of a single failure.

@@ -1,4 +1,4 @@
-package test.com.budgetapp.tests.ai;
+package com.budgetapp.tests.ai;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -44,7 +44,7 @@ public final class AiClient {
      * Returns the model's reading of the failure, or a neutral verdict when
      * triage is unavailable for any reason.
      */
-    public static test.com.budgetapp.tests.ai.TriageVerdict triage(TriageContext context) {
+    public static TriageVerdict triage(TriageContext context) {
         try {
             String reply = ask(buildPrompt(context));
             return parse(reply);

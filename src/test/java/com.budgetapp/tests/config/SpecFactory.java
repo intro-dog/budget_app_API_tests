@@ -1,11 +1,12 @@
-package test.com.budgetapp.tests.config;
+package com.budgetapp.tests.config;
 
 
+import com.budgetapp.tests.ai.HttpExchangeRecorder;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import test.com.budgetapp.tests.ai.HttpExchangeRecorder;
 
 /**
  * Central factory for request specifications.
@@ -17,23 +18,29 @@ import test.com.budgetapp.tests.ai.HttpExchangeRecorder;
  */
 public final class SpecFactory {
 
-    private SpecFactory(){}
+    private SpecFactory() {
+    }
 
     private static RequestSpecBuilder base() {
         RequestSpecBuilder builder = new RequestSpecBuilder()
                 .setBaseUri(Config.baseUrl())
                 .setBasePath(Config.basePath())
                 .addHeader("Accept", "application/json")
-                .addFilter(new HttpExchangeRecorder());
+                .addFilter(new HttpExchangeRecorder())
+                // Captures the full request and response into the report, so a
+                // failure can be diagnosed from the artefact alone — without
+                // access to the machine that produced it
+                .addFilter(new AllureRestAssured());
 
         if (Config.httpLogging()) {
             builder.log(LogDetail.ALL);
         }
-
         return builder;
     }
 
-    /** Unauthenticated JSON requests: registration, password reset, health. */
+    /**
+     * Unauthenticated JSON requests: registration, password reset, health.
+     */
     public static RequestSpecification anonymous() {
         return base()
                 .setContentType(ContentType.JSON)
@@ -51,7 +58,9 @@ public final class SpecFactory {
                 .build();
     }
 
-    /** Authenticated JSON requests. */
+    /**
+     * Authenticated JSON requests.
+     */
     public static RequestSpecification authenticated(String accessToken) {
         return base()
                 .setContentType(ContentType.JSON)

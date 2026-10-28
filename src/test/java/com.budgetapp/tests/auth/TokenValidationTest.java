@@ -1,14 +1,14 @@
-package test.com.budgetapp.tests.auth;
+package com.budgetapp.tests.auth;
 
 
+import com.budgetapp.tests.api.AuthApi;
+import com.budgetapp.tests.api.UserApi;
+import com.budgetapp.tests.config.Config;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import test.com.budgetapp.tests.api.AuthApi;
-import test.com.budgetapp.tests.api.UserApi;
-import test.com.budgetapp.tests.config.Config;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

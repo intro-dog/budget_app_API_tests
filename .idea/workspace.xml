@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f6baea35-275c-4223-8194-b7d6263cb990" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/allure.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/ai/AiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/ai/AiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/ai/AiClientManualCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/ai/AiClientManualCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/ai/AiTriageExtension.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/ai/AiTriageExtension.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/ai/HttpExchangeRecorder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/ai/HttpExchangeRecorder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/ai/TriageContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/ai/TriageContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/ai/TriageVerdict.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/ai/TriageVerdict.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/api/AuthApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/api/AuthApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/api/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/api/UserApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/auth/ForceLogoutTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/auth/ForceLogoutTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/auth/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/auth/LoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/auth/RefreshRotationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/auth/RefreshRotationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/auth/TokenValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/auth/TokenValidationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/config/SpecFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/config/SpecFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/smoke/HealthCheckTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/smoke/HealthCheckTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/com.budgetapp/tests/smoke/SpecFactorySmokeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com.budgetapp/tests/smoke/SpecFactorySmokeTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3LLEjctQWNTRsdlMRRLdsTLdFbE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Vlad/Desktop/budget-api-tests",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10968.63" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10968.63" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f6baea35-275c-4223-8194-b7d6263cb990" name="Changes" comment="" />
+      <created>1793225087618</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1793225087618</updated>
+      <workItem from="1793225091125" duration="22000" />
+      <workItem from="1793225160541" duration="245000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
