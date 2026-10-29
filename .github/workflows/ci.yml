@@ -1,0 +1,21 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      # Compiles the suite without running it. The tests target a live API
+      # that this runner cannot reach, so execution happens locally while CI
+      # guards against the code itself drifting out of a buildable state.
+      - run: mvn -B clean test-compile
