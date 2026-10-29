@@ -1,12 +1,15 @@
 package com.budgetapp.tests.auth;
 
 
+import com.budgetapp.tests.ai.AiTriageExtension;
 import com.budgetapp.tests.api.AuthApi;
 import com.budgetapp.tests.api.UserApi;
 import com.budgetapp.tests.config.Config;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -23,6 +26,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  * would leave the client unable to tell "retry after refresh" from "you have
  * a bug".
  */
+@Epic("Authentication")
+@Feature("Token validation")
+@ExtendWith(AiTriageExtension.class)
 class TokenValidationTest {
 
     @Test
@@ -62,6 +68,8 @@ class TokenValidationTest {
      * hand, so this is the single most important negative case in the suite.
      */
     @Test
+    @Story("Forced credentials are refused")
+    @Severity(SeverityLevel.BLOCKER)
     @DisplayName("A token with a tampered payload is rejected")
     void tamperedTokenIsRejected() {
         String forged = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"

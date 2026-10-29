@@ -2,6 +2,7 @@ package com.budgetapp.tests.api;
 
 
 import com.budgetapp.tests.config.SpecFactory;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
@@ -24,6 +25,7 @@ public final class AuthApi {
      * <p>The {@code username} form field accepts either an email address or a
      * nickname, which is why the parameter is named neutrally.
      */
+    @Step("Log in as {login}")
     public static Response login(String login, String password){
 
         return given()
@@ -40,6 +42,7 @@ public final class AuthApi {
      * <p>The token travels in a custom header rather than the body, matching
      * the endpoint's contract.
      */
+    @Step("Exchange the refresh token for a new pair")
     public static Response refresh(String refreshToken) {
         return given()
                 .spec(SpecFactory.anonymous())
@@ -49,6 +52,7 @@ public final class AuthApi {
     }
 
     /** Ends the current session. */
+    @Step("Log out the current session")
     public static Response logout(String accessToken, String refreshToken) {
         return given()
                 .spec(SpecFactory.authenticated(accessToken))
@@ -58,6 +62,7 @@ public final class AuthApi {
     }
 
     /** Invalidates every token issued before the moment of the call. */
+    @Step("Force logout from all devices")
     public static Response forceLogout(String accessToken) {
         return given()
                 .spec(SpecFactory.authenticated(accessToken))

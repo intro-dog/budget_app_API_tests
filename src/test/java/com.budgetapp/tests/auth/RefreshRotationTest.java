@@ -1,11 +1,14 @@
 package com.budgetapp.tests.auth;
 
 
+import com.budgetapp.tests.ai.AiTriageExtension;
 import com.budgetapp.tests.config.Config;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.budgetapp.tests.api.AuthApi;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,6 +21,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  * limits the damage of a stolen token — the moment either party uses it,
  * the other one's copy becomes worthless.
  */
+@Epic("Authentication")
+@Feature("Refresh token rotation")
+@ExtendWith(AiTriageExtension.class)
 class RefreshRotationTest {
 
     /** Authenticates the seeded user and returns the issued refresh token. */
@@ -60,6 +66,8 @@ class RefreshRotationTest {
      * indefinitely — rotation would be cosmetic.
      */
     @Test
+    @Story("A spent token cannot be replayed")
+    @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Replaying a spent refresh token is rejected")
     void spentRefreshTokenCannotBeReused() {
         String originalRefresh = loginAndGetRefreshToken();

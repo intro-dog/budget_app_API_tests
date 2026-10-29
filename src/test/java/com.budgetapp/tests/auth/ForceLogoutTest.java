@@ -1,12 +1,15 @@
 package com.budgetapp.tests.auth;
 
+import com.budgetapp.tests.ai.AiTriageExtension;
 import com.budgetapp.tests.config.Config;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.budgetapp.tests.api.AuthApi;
 import com.budgetapp.tests.api.UserApi;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,6 +22,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  * every token minted before that instant is refused from then on, without
  * the server having to track individual sessions.
  */
+@Epic("Authentication")
+@Feature("Force logout")
+@ExtendWith(AiTriageExtension.class)
 class ForceLogoutTest {
 
     /** A freshly issued token pair for the seeded user. */
@@ -104,6 +110,8 @@ class ForceLogoutTest {
      * of the feature.
      */
     @Test
+    @Story("Revocation covers every active session")
+    @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Concurrent sessions are revoked, not just the calling one")
     void allSessionsAreRevokedTogether() {
         Session firstDevice = login();
@@ -138,5 +146,4 @@ class ForceLogoutTest {
                 .as("An unauthenticated caller must not be able to revoke sessions")
                 .isIn(400, 401);
     }
-
 }

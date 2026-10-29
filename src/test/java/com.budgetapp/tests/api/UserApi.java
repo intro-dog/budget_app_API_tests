@@ -1,5 +1,6 @@
 package com.budgetapp.tests.api;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import com.budgetapp.tests.config.SpecFactory;
 
@@ -19,6 +20,7 @@ public final class UserApi {
      * access token: suites that revoke credentials assert against it to prove
      * the revocation actually took effect.
      */
+    @Step("Fetch the authenticated  user's profile")
     public static Response getMe(String accessToken) {
         return given()
                 .spec(SpecFactory.authenticated(accessToken))
