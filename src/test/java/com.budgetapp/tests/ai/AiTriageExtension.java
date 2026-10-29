@@ -1,5 +1,6 @@
 package com.budgetapp.tests.ai;
 
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
 
@@ -36,7 +37,7 @@ public class AiTriageExtension implements TestWatcher {
         } catch (Exception ignored) {
             // A triage layer that throws would add a second, unrelated error
             // on top of the failure under investigation. Silence is the only
-            // acceptable behaviour here.
+            // acceptable behavior here.
         }
     }
 
@@ -86,18 +87,28 @@ public class AiTriageExtension implements TestWatcher {
     }
 
     /**
-     * Writes the verdict where a reviewer will actually see it.
+     * Writes the verdict where a reviewer will actually look.
      *
-     * <p>{@code publishReportEntry} lands in the JUnit XML that every CI
-     * server and IDE already renders, so the verdict travels with the result
-     * without this project taking on a reporting dependency.
+     * <p>The attachment lands inside the failed test's own card in the report,
+     * next to the request and response that produced it — so the explanation
+     * arrives in the same glance as the evidence, rather than in a separate
+     * place the reader has to think to visit.
      */
     private void publish(ExtensionContext context, TriageVerdict verdict) {
-        context.publishReportEntry("ai-triage", verdict.toReport());
+        Allure.addAttachment(
+                "AI triage - " + verdict.category(),
+                "text/plain",
+                verdict.toReport()
+        );
+
+        // A label makes the verdict filterable: a reviewer can pull up every
+        // failure the model called an environment problem without opening
+        // them one at a time
+        Allure.label("ai-category", verdict.category().name());
 
         System.out.printf(
                 """
-                                
+                               \s
                         ┌─ AI Triage ─────────────────────────────────
                         │ %s
                         │ Category: %s
