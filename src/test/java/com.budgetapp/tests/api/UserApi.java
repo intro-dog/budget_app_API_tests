@@ -3,6 +3,7 @@ package com.budgetapp.tests.api;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import com.budgetapp.tests.config.SpecFactory;
+import io.restassured.specification.RequestSpecification;
 
 import static io.restassured.RestAssured.given;
 
@@ -26,5 +27,29 @@ public final class UserApi {
                 .spec(SpecFactory.authenticated(accessToken))
                 .when()
                 .get("/users/me");
+    }
+
+    /**
+     * Updates the authenticated user's profile.
+     *
+     * <p>The endpoint guards writes with an optimistic lock: the caller echoes
+     * the version it last read in {@code If-Match}, and the update only lands
+     * if that version is still current. Omitting the header is refused rather
+     * than treated as "I don't care" — a blind write is the failure mode the
+     * lock exists to prevent.
+     *
+     * @param version value to send in {@code If-Match}, or {@code null} to
+     *                omit the header entirely
+     */
+    @Step("Update the profile with If-Match: {version}")
+    public static Response patchProfile(String accessToken, String version, String body) {
+        RequestSpecification request = given()
+                .spec(SpecFactory.authenticated(accessToken))
+                .body(body);
+
+        if (version != null) {
+            request.header("If-Match", version);
+        }
+        return request.when().patch("/users/me");
     }
 }
