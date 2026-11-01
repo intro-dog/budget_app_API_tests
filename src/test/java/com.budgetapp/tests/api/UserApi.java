@@ -15,6 +15,35 @@ public final class UserApi {
     private UserApi(){}
 
     /**
+     * Registers a new account.
+     *
+     * <p>Rate limited to three per hour per IP, which is why suites create
+     * one account per class rather than one per test.
+     */
+    @Step("Register {email}")
+    public static Response register(
+            String name,
+            String nickname,
+            String email,
+            String password
+    ) {
+        return given()
+                .spec(SpecFactory.anonymous())
+                .body("""
+                      {
+                        "name": "%s",
+                        "nickname": "%s",
+                        "email": "%s",
+                        "password": "%s",
+                        "default_currency": "EUR"
+                      }
+                      """.formatted(name, nickname, email, password))
+                .when()
+                .post("/users/create");
+    }
+
+
+    /**
      * Returns the authenticated user's profile.
      *
      * <p>Beyond its own coverage, this call doubles as a liveliness probe for an
@@ -51,5 +80,22 @@ public final class UserApi {
             request.header("If-Match", version);
         }
         return request.when().patch("/users/me");
+    }
+
+    /**
+     * Changes the authenticated user's password.
+     *
+     * <p>Re-authentication with the current password stands in for the
+     * optimistic lock here: a stolen access token alone must not be enough to
+     * seize an account, and knowing the old password is a stronger guarantee
+     * than echoing a version number.
+     */
+    @Step("Change the password")
+    public static Response changePassword(String accessToken, String body) {
+        return given()
+                .spec(SpecFactory.authenticated(accessToken))
+                .body(body)
+                .when()
+                .post("/users/me/password");
     }
 }

@@ -1,10 +1,11 @@
 package com.budgetapp.tests.auth;
 
 import com.budgetapp.tests.ai.AiTriageExtension;
-import com.budgetapp.tests.config.Config;
+import com.budgetapp.tests.data.TestUser;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.budgetapp.tests.api.AuthApi;
@@ -27,13 +28,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(AiTriageExtension.class)
 class ForceLogoutTest {
 
+    private static TestUser user;
+
     /** A freshly issued token pair for the seeded user. */
     private record Session(String accessToken, String refreshToken) {}
 
-    private Session login() {
+    /**
+     * A dedicated account, because force-logout is destructive to every
+     * session the account holds. Sharing the seeded user would mean this
+     * class silently invalidated tokens held by any suite running
+     * alongside it.
+     */
+    @BeforeAll
+    static void registerDedicatedAccount() {
+        user = TestUser.register();
+    }
+
+
+    private Session login() throws InterruptedException {
+        Thread.sleep(1100);
+
         Response response = AuthApi.login(
-                Config.seedUserEmail(),
-                Config.seedUserPassword()
+                user.email(),
+                user.password()
         );
 
         assertThat(response.statusCode())
@@ -48,7 +65,7 @@ class ForceLogoutTest {
 
     @Test
     @DisplayName("Force-logout is accepted for an authenticated caller")
-    void forceLogoutSucceeds() {
+    void forceLogoutSucceeds() throws InterruptedException {
         Session session = login();
 
         Response response = AuthApi.forceLogout(session.accessToken());
@@ -65,7 +82,7 @@ class ForceLogoutTest {
      */
     @Test
     @DisplayName("The access token that triggered the logout stops working")
-    void accessTokenIsInvalidatedAfterForceLogout() {
+    void accessTokenIsInvalidatedAfterForceLogout() throws InterruptedException {
         Session session = login();
 
         assertThat(UserApi.getMe(session.accessToken()).statusCode())
@@ -85,7 +102,7 @@ class ForceLogoutTest {
 
     @Test
     @DisplayName("A refresh token issued before the logout can no longer be exchanged")
-    void refreshTokenIsInvalidatedAfterForceLogout() {
+    void refreshTokenIsInvalidatedAfterForceLogout() throws InterruptedException {
         Session session = login();
 
         AuthApi.forceLogout(session.accessToken());
@@ -113,7 +130,7 @@ class ForceLogoutTest {
     @Story("Revocation covers every active session")
     @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Concurrent sessions are revoked, not just the calling one")
-    void allSessionsAreRevokedTogether() {
+    void allSessionsAreRevokedTogether() throws InterruptedException {
         Session firstDevice = login();
         Session secondDevice = login();
 
@@ -126,7 +143,7 @@ class ForceLogoutTest {
 
     @Test
     @DisplayName("Logging in again after a force-logout yields a working session")
-    void loginAfterForceLogoutRestoresAccess() {
+    void loginAfterForceLogoutRestoresAccess() throws InterruptedException {
         Session oldSession = login();
         AuthApi.forceLogout(oldSession.accessToken());
 
