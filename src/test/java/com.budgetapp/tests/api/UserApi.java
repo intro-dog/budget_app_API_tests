@@ -98,4 +98,28 @@ public final class UserApi {
                 .when()
                 .post("/users/me/password");
     }
+
+    /**
+     * Soft-deletes the authenticated account.
+     *
+     * <p>Three independent guards apply at once: the caller needs the
+     * {@code CAN_SELF_DELETE} permission, must echo the current version in
+     * {@code If-Match}, and must re-authenticate with their password inside
+     * the body. Deletion is the one action a user cannot undo, so each guard
+     * covers a different way of arriving here by accident or by theft.
+     *
+     * @param version value for {@code If-Match}, or {@code null} to omit it
+     */
+    @Step("Delete the account with If-Match: {version}")
+    public static Response deleteMe(String accessToken, String version, String body) {
+        RequestSpecification request = given()
+                .spec(SpecFactory.authenticated(accessToken))
+                .body(body);
+
+        if (version != null) {
+            request.header("If-Match", version);
+        }
+
+        return request.when().delete("/users/me");
+    }
 }
